@@ -42,6 +42,14 @@ public class CommonResult <T>{
 
     /**
      * 成功返回
+     * @return 成功结果
+     */
+    public static <T> CommonResult<T> ok() {
+        return ok(null, RetCode.SUCCESS.getMessage());
+    }
+
+    /**
+     * 成功返回
      * @param data 数据
      * @return 成功结果
      */

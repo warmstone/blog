@@ -2,5 +2,5 @@
 
 ## 技术选型：
 
-后端：SpringBoot + Spring Security + Mybatis + MongoDB 
+后端：SpringBoot + Spring Security + Mybatis Plus + MySQL 
 前端：vue + ElementUI
