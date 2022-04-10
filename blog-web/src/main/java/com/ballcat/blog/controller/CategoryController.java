@@ -21,40 +21,41 @@ import java.util.List;
  * @description
  */
 @RestController
+@RequestMapping(value = "/category")
 @AllArgsConstructor
 @Api(tags = "后台管理>>博客分类管理")
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @PostMapping(value = "/category")
+    @PostMapping()
     @ApiOperation(value = "新增分类", httpMethod = "POST")
     public CommonResult<Integer> save(@RequestBody CategoryDTO categoryDTO) throws Exception {
         categoryService.saveBlogCategory(categoryDTO);
         return CommonResult.ok();
     }
 
-    @PutMapping(value = "/category")
+    @PutMapping()
     @ApiOperation(value = "修改分类", httpMethod = "PUT")
     public CommonResult<Integer> update(@Validated(Update.class) @RequestBody CategoryDTO categoryDTO) throws Exception {
         categoryService.updateBlogCategory(categoryDTO);
         return CommonResult.ok();
     }
 
-    @PutMapping(value = "/category/{id}")
+    @PutMapping(value = "/{id}")
     @ApiOperation(value = "启用/禁用分类", httpMethod = "DELETE")
     public CommonResult<Integer> enabled(@PathVariable("id") Long id, @RequestParam Boolean enabled) throws Exception {
         categoryService.enabled(id, enabled);
         return CommonResult.ok();
     }
 
-    @GetMapping(value = "/category")
+    @GetMapping()
     @ApiOperation(value = "分类列表", httpMethod = "GET")
     public CommonResult<List<CategoryVO>> listBlogCategory(BlogCategoryParam param) {
         return categoryService.listBlogCategory(param);
     }
 
-    @GetMapping(value = "/category/{id}")
+    @GetMapping(value = "/{id}")
     @ApiOperation(value = "查看分类详情", httpMethod = "GET")
     public CommonResult<CategoryVO> getById(@PathVariable("id") Long id) throws BizException {
         return CommonResult.ok(categoryService.getBlogCategoryById(id));
