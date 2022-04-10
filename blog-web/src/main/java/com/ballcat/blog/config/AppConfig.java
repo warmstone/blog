@@ -1,15 +1,9 @@
 package com.ballcat.blog.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.github.pagehelper.PageInterceptor;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.context.annotation.Bean;
+import com.ballcat.blog.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-
-import javax.sql.DataSource;
-import java.util.Properties;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author pengshun
@@ -17,7 +11,18 @@ import java.util.Properties;
  * @description
  */
 @Configuration
-public class AppConfig {
+public class AppConfig implements WebMvcConfigurer {
 
+    private final LoginInterceptor loginInterceptor;
 
+    public AppConfig(LoginInterceptor loginInterceptor) {
+        this.loginInterceptor = loginInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/admin/**") // 拦截后台请求
+                .excludePathPatterns("/admin/login"); // 放行登陆接口
+    }
 }
