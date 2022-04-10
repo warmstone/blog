@@ -1,10 +1,13 @@
 package com.ballcat.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import java.sql.JDBCType;
 import java.util.Date;
 
 /**
@@ -13,18 +16,25 @@ import java.util.Date;
  * @description
  */
 @Data
-@TableName(value = "blog_category")
+@TableName(value = "t_blog_category")
 public class BlogCategory {
 
     /**
      * id
      */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
      * 分类名称
      */
     private String categoryName;
+
+    /**
+     * 逻辑删除标志
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
 
     /**
      * 创建时间

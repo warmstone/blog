@@ -28,12 +28,12 @@ public class CommonResult <T>{
     /**
      * 数据总数，前端分页处理
      */
-    private Integer total;
+    private Long total;
 
     private CommonResult() {
     }
 
-    private CommonResult(Integer code, String message, T data, Integer total) {
+    private CommonResult(Integer code, String message, T data, Long total) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -62,7 +62,7 @@ public class CommonResult <T>{
      * @param data 数据
      * @return 成功结果
      */
-    public static <T> CommonResult<T> ok(T data, Integer total) {
+    public static <T> CommonResult<T> ok(T data, Long total) {
         return ok(RetCode.SUCCESS.getCode(), RetCode.SUCCESS.getMessage(), data, total);
     }
 
@@ -73,7 +73,7 @@ public class CommonResult <T>{
      * @return 成功结果
      */
     public static <T> CommonResult<T> ok(T data, String message) {
-        return ok(RetCode.SUCCESS.getCode(), message, data, 0);
+        return ok(RetCode.SUCCESS.getCode(), message, data, 0L);
     }
 
     /**
@@ -84,7 +84,7 @@ public class CommonResult <T>{
      * @param total 数据总数
      * @return 成功结果
      */
-    public static <T> CommonResult<T> ok(Integer code, String message, T data, Integer total) {
+    public static <T> CommonResult<T> ok(Integer code, String message, T data, Long total) {
         return new CommonResult<>(code, message, data, total);
     }
 
@@ -94,7 +94,7 @@ public class CommonResult <T>{
      * @return 失败提示
      */
     public static <T> CommonResult<T> fail(String message) {
-        return fail(RetCode.FAIL.getCode(), message, null, 0);
+        return fail(RetCode.FAIL.getCode(), message, null, 0L);
     }
 
     /**
@@ -104,7 +104,7 @@ public class CommonResult <T>{
      * @return 失败结果
      */
     public static <T> CommonResult<T> fail(Integer code, String message) {
-        return fail(code, message, null, 0);
+        return fail(code, message, null, 0L);
     }
 
     /**
@@ -115,7 +115,7 @@ public class CommonResult <T>{
      * @param total 总数
      * @return 错误返回
      */
-    public static <T> CommonResult<T> fail(Integer code, String message, T data, Integer total) {
+    public static <T> CommonResult<T> fail(Integer code, String message, T data, Long total) {
         return new CommonResult<>(code, message, data, total);
     }
 }

@@ -38,6 +38,7 @@
         <mybatis.spring.boot.version>2.2.1</mybatis.spring.boot.version>
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <swagger.version>3.0.0</swagger.version>
+        <pagehelper.version>1.4.2</pagehelper.version>
     </properties>
 
     <dependencyManagement>
@@ -100,6 +101,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
