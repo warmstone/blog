@@ -1,6 +1,6 @@
 package com.ballcat.blog.mapper;
 
-import com.ballcat.blog.entity.BlogCategory;
+import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.param.BlogCategoryParam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,11 +14,11 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface CategoryMapper extends BaseMapper<BlogCategory> {
+public interface CategoryMapper extends BaseMapper<Category> {
 
-    BlogCategory getByCategoryName(@Param("categoryName") String categoryName);
+    Category getByCategoryName(@Param("categoryName") String categoryName);
 
-    List<BlogCategory> listBlogCategory(BlogCategoryParam param);
+    List<Category> listBlogCategory(BlogCategoryParam param);
 
     void enabledBlogCategory(@Param("id") Long id, @Param("enabled") Boolean enabled);
 }

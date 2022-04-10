@@ -6,7 +6,7 @@ import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.common.response.RetCode;
 import com.ballcat.blog.dto.CategoryDTO;
-import com.ballcat.blog.entity.BlogCategory;
+import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.mapper.CategoryMapper;
 import com.ballcat.blog.param.BlogCategoryParam;
 import com.ballcat.blog.service.CategoryService;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategory> implements CategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
     private final CategoryMapper categoryMapper;
 
@@ -41,9 +41,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
     @Override
     public void saveBlogCategory(CategoryDTO categoryDTO) throws BizException {
         checkCategoryNameExists(categoryDTO.getCategoryName());
-        BlogCategory blogCategory = new BlogCategory();
-        BeanUtil.copyProperties(categoryDTO, blogCategory);
-        save(blogCategory);
+        Category category = new Category();
+        BeanUtil.copyProperties(categoryDTO, category);
+        save(category);
     }
 
     /**
@@ -56,7 +56,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
         checkCategoryExists(categoryDTO.getId());
         // 查询分类名称是否存在
         checkCategoryNameExists(categoryDTO.getCategoryName());
-        BlogCategory updateEntity = new BlogCategory();
+        Category updateEntity = new Category();
         BeanUtil.copyProperties(categoryDTO, updateEntity);
         updateById(updateEntity);
     }
@@ -65,12 +65,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
      * 根据ID查询分类是否存在
      * @param id 分类ID
      */
-    private BlogCategory checkCategoryExists(Long id) throws BizException {
-        BlogCategory blogCategory = getById(id);
-        if (ObjectUtil.isNull(blogCategory)) {
+    private Category checkCategoryExists(Long id) throws BizException {
+        Category category = getById(id);
+        if (ObjectUtil.isNull(category)) {
             throw new BizException(RetCode.NOT_FOUND);
         }
-        return blogCategory;
+        return category;
     }
 
     /**
@@ -78,7 +78,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
      * @param categoryName 分类名称
      */
     private void checkCategoryNameExists(String categoryName) throws BizException {
-        BlogCategory category = categoryMapper.getByCategoryName(categoryName);
+        Category category = categoryMapper.getByCategoryName(categoryName);
         if (ObjectUtil.isNotNull(category)) {
             throw new BizException("该分类已经存在");
         }
@@ -91,13 +91,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
      */
     @Override
     public CommonResult<List<CategoryVO>> listBlogCategory(BlogCategoryParam param) {
-        PageInfo<BlogCategory> pageInfo = PageHelper.startPage(param.getCurrentPage(), param.getPageSize()).doSelectPageInfo(() -> {
+        PageInfo<Category> pageInfo = PageHelper.startPage(param.getCurrentPage(), param.getPageSize()).doSelectPageInfo(() -> {
             categoryMapper.listBlogCategory(param);
         });
-        List<BlogCategory> list = pageInfo.getList();
-        List<CategoryVO> categoryVOList = list.stream().map(blogCategory -> {
+        List<Category> list = pageInfo.getList();
+        List<CategoryVO> categoryVOList = list.stream().map(category -> {
             CategoryVO blogCategoryVO = new CategoryVO();
-            BeanUtil.copyProperties(blogCategory, blogCategoryVO);
+            BeanUtil.copyProperties(category, blogCategoryVO);
             return blogCategoryVO;
         }).collect(Collectors.toList());
         return CommonResult.ok(categoryVOList, pageInfo.getTotal());
@@ -110,9 +110,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, BlogCategor
      */
     @Override
     public CategoryVO getBlogCategoryById(Long id) throws BizException {
-        BlogCategory blogCategory = checkCategoryExists(id);
+        Category category = checkCategoryExists(id);
         CategoryVO blogCategoryVO = new CategoryVO();
-        BeanUtil.copyProperties(blogCategory, blogCategoryVO);
+        BeanUtil.copyProperties(category, blogCategoryVO);
         return blogCategoryVO;
     }
 

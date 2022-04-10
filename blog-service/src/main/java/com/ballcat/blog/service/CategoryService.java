@@ -3,7 +3,7 @@ package com.ballcat.blog.service;
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.dto.CategoryDTO;
-import com.ballcat.blog.entity.BlogCategory;
+import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.param.BlogCategoryParam;
 import com.ballcat.blog.vo.CategoryVO;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2022-04-07 22:02
  * @description
  */
-public interface CategoryService extends IService<BlogCategory> {
+public interface CategoryService extends IService<Category> {
 
     /**
      * 保存分类

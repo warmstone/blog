@@ -11,7 +11,8 @@ public enum RetCode {
     FAIL(-1, "失败"),
     NOT_FOUND(404, "访问的资源不存在"),
     UNAUTHORIZED(401, "未认证"),
-    PERMISSION_DENIED(403, "权限不足")
+    PERMISSION_DENIED(403, "权限不足"),
+    LOGIN_FAILED(405, "登陆失败")
     ;
 
     private Integer code;

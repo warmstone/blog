@@ -21,7 +21,7 @@ import java.util.List;
  * @description
  */
 @RestController
-@RequestMapping(value = "/category")
+@RequestMapping(value = "/admin/category")
 @AllArgsConstructor
 @Api(tags = "后台管理>>博客分类管理")
 public class CategoryController {

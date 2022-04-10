@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "t_category")
-public class BlogCategory {
+public class Category {
 
     /**
      * id

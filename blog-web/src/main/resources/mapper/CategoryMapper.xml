@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ballcat.blog.mapper.CategoryMapper">
 
-    <resultMap id="baseResultMap" type="com.ballcat.blog.entity.BlogCategory">
+    <resultMap id="baseResultMap" type="com.ballcat.blog.entity.Category">
         <id column="id" property="id"/>
         <result column="category_name" property="categoryName"/>
         <result column="is_deleted" property="deleted"/>
@@ -20,6 +20,7 @@
         select id
         from t_category
         where category_name = #{categoryName}
+        limit 1
     </select>
 
     <select id="listBlogCategory" resultMap="baseResultMap">
