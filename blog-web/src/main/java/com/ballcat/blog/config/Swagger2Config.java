@@ -23,7 +23,6 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ballcat.blog.controller"))
-                .apis(RequestHandlerSelectors.basePackage("com.ballcat.blog.api"))
                 .paths(PathSelectors.any())
                 .build();
     }
