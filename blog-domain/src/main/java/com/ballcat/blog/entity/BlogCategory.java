@@ -16,7 +16,7 @@ import java.util.Date;
  * @description
  */
 @Data
-@TableName(value = "t_blog_category")
+@TableName(value = "t_category")
 public class BlogCategory {
 
     /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ballcat.blog.mapper.BlogCategoryMapper">
+<mapper namespace="com.ballcat.blog.mapper.CategoryMapper">
 
     <resultMap id="baseResultMap" type="com.ballcat.blog.entity.BlogCategory">
         <id column="id" property="id"/>
@@ -11,20 +11,20 @@
     </resultMap>
 
     <update id="enabledBlogCategory">
-        update t_blog_category
+        update t_category
         set is_deleted = #{enabled}
         where id = #{id}
     </update>
 
     <select id="getByCategoryName" resultMap="baseResultMap">
         select id
-        from t_blog_category
+        from t_category
         where category_name = #{categoryName}
     </select>
 
     <select id="listBlogCategory" resultMap="baseResultMap">
-        select id, category_name, is_deleted, creat_time, update_time
-        from t_blog_category
+        select id, category_name, is_deleted, create_time, update_time
+        from t_category
         <where>
             <if test="categoryName != null">
                 category_name like concat('%', #{categoryName}, '%')

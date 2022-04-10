@@ -2,9 +2,9 @@ create database if not exists blog;
 
 use blog;
 
-drop table if exists t_blog_category;
+drop table if exists t_category;
 
-create table if not exists t_blog_category (
+create table if not exists t_category (
     id bigint unsigned auto_increment comment '主键',
     category_name varchar(50) default null comment '分类名称',
     is_deleted tinyint(1) default 0 comment '逻辑删除标志,0-有效，1-删除',

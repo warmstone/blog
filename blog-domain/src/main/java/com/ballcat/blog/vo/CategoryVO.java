@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "博客分类显示vo")
-public class BlogCategoryVO {
+public class CategoryVO {
 
     @ApiModelProperty("id")
     private Long id;

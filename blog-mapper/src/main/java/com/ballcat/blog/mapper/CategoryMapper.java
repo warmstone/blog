@@ -14,7 +14,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface BlogCategoryMapper extends BaseMapper<BlogCategory> {
+public interface CategoryMapper extends BaseMapper<BlogCategory> {
 
     BlogCategory getByCategoryName(@Param("categoryName") String categoryName);
 

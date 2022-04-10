@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel(description = "增加和修改博客分类的入参")
-public class BlogCategoryDTO {
+public class CategoryDTO {
 
     @NotNull(groups = Update.class, message = "id不能为空")
     @ApiModelProperty(value = "id")
