@@ -4,7 +4,7 @@ import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.dto.CategoryDTO;
 import com.ballcat.blog.entity.Category;
-import com.ballcat.blog.param.BlogCategoryParam;
+import com.ballcat.blog.param.CategoryParam;
 import com.ballcat.blog.vo.CategoryVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -34,7 +34,7 @@ public interface CategoryService extends IService<Category> {
      * @param param 查询入参
      * @return 分类列表
      */
-    CommonResult<List<CategoryVO>> listBlogCategory(BlogCategoryParam param);
+    CommonResult<List<CategoryVO>> listBlogCategory(CategoryParam param);
 
     /**
      * 根据ID查询分类详情
@@ -49,4 +49,10 @@ public interface CategoryService extends IService<Category> {
      * @param enabled 启用状态
      */
     void enabled(Long id, Boolean enabled) throws BizException;
+
+    /**
+     * 删除分类
+     * @param id
+     */
+    void removeCategoryById(Long id) throws BizException;
 }

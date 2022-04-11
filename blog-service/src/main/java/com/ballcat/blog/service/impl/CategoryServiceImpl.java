@@ -8,7 +8,7 @@ import com.ballcat.blog.common.response.RetCode;
 import com.ballcat.blog.dto.CategoryDTO;
 import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.mapper.CategoryMapper;
-import com.ballcat.blog.param.BlogCategoryParam;
+import com.ballcat.blog.param.CategoryParam;
 import com.ballcat.blog.service.CategoryService;
 import com.ballcat.blog.vo.CategoryVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -90,7 +90,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * @return 博客分类列表
      */
     @Override
-    public CommonResult<List<CategoryVO>> listBlogCategory(BlogCategoryParam param) {
+    public CommonResult<List<CategoryVO>> listBlogCategory(CategoryParam param) {
         PageInfo<Category> pageInfo = PageHelper.startPage(param.getCurrentPage(), param.getPageSize()).doSelectPageInfo(() -> {
             categoryMapper.listBlogCategory(param);
         });
@@ -125,5 +125,15 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public void enabled(Long id, Boolean enabled) throws BizException {
         checkCategoryExists(id);
         categoryMapper.enabledBlogCategory(id, enabled);
+    }
+
+    /**
+     * 删除分类
+     * @param id
+     */
+    @Override
+    public void removeCategoryById(Long id) throws BizException {
+        checkCategoryExists(id);
+        categoryMapper.deleteById(id);
     }
 }
