@@ -1,4 +1,4 @@
-package com.ballcat.blog.controller;
+package com.ballcat.blog.controller.admin;
 
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;

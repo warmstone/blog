@@ -1,16 +1,21 @@
 package com.ballcat.blog.common.util;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 
 
 /**
@@ -20,9 +25,12 @@ import java.util.function.Function;
  */
 public class JWTUtil {
 
+    private static final Logger logger = LoggerFactory.getLogger(JWTUtil.class);
+
     private static final String secret = "ball-cat";
 
     private static final long expiration = 1800L;
+//    private static final long expiration = 64L;
 
     private static final Clock clock = DefaultClock.INSTANCE;
 
@@ -83,7 +91,8 @@ public class JWTUtil {
 
     public static Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = getIssueAtDateFromToken(token);
-        return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
+        // token过期时间为30分钟，在token失效前450s内有操作即可刷新token
+        return !isCreatedBeforeLastPasswordReset(DateUtil.offsetSecond(created, (int) (expiration >> 2)), lastPasswordReset)
                 && (!isTokenExpired(token) || ignoreTokenExpiration(token));
     }
 
@@ -107,5 +116,19 @@ public class JWTUtil {
 
     private static Date calculateExpirationDate(Date createDate) {
         return new Date(createDate.getTime() + expiration * 1000);
+    }
+
+    public static void main(String[] args) {
+        String token = JWTUtil.generateToken("root");
+        while (true) {
+            logger.info("token: {}", token);
+            logger.info("expirationDate: {}", DateUtil.format(JWTUtil.getExpirationDateFromToken(token), DatePattern.NORM_DATETIME_FORMAT));
+            logger.info("isTokenExpired: {}", JWTUtil.isTokenExpired(token));
+            Boolean canTokenBeRefreshed = JWTUtil.canTokenBeRefreshed(token, DateUtil.date());
+            logger.info("canTokenBeRefreshed: {}", canTokenBeRefreshed);
+            if (canTokenBeRefreshed) {
+                break;
+            }
+        }
     }
 }

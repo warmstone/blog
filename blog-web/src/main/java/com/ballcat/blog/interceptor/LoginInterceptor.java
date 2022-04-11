@@ -1,5 +1,6 @@
 package com.ballcat.blog.interceptor;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.RetCode;
@@ -28,12 +29,21 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String authorization = request.getHeader("Authorization");
-        if (ObjectUtil.isNull(authorization)) {
-            throw new BizException(RetCode.UNAUTHORIZED);
-        }
+        String token = request.getHeader("Authorization");
         try {
-            String username = JWTUtil.getUsernameFromToken(authorization);
+            Boolean expired = JWTUtil.isTokenExpired(token);
+            if (expired) {
+                // 登录失效
+                throw new BizException(RetCode.LOGIN_EXPIRED);
+            }
+            // 可以获取到用户信息并放入ThreadLocal以便在业务处理时获取
+            String username = JWTUtil.getUsernameFromToken(token);
+            Boolean canTokenBeRefreshed = JWTUtil.canTokenBeRefreshed(token, DateUtil.date());
+            logger.info("canTokenBeRefreshed: {}", canTokenBeRefreshed);
+            if (canTokenBeRefreshed) {
+                String refreshToken = JWTUtil.refreshToken(token);
+                response.setHeader("x-auth-token", refreshToken);
+            }
         } catch (Exception e) {
             logger.info("==================token解析异常==================");
             throw new BizException(RetCode.UNAUTHORIZED);

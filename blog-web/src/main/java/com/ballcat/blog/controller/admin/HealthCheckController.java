@@ -1,4 +1,4 @@
-package com.ballcat.blog.controller;
+package com.ballcat.blog.controller.admin;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;

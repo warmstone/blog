@@ -27,7 +27,7 @@ public class LogAspect {
     /**
      * 日志切点
      */
-    @Pointcut(value = "execution(public * com.ballcat.blog.controller.*.* (*))")
+    @Pointcut(value = "execution(public * com.ballcat.blog.controller.*.*.* (*))")
     public void log() {}
 
     @Around(value = "log()")
