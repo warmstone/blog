@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: aliyun
+    active: dev
   application:
     name: small-beautiful-blog
 
