@@ -38,7 +38,7 @@ create table if not exists t_tag (
  drop table if exists t_user;
 
 create table if not exists t_user (
-    id bigint unique auto_increment comment '主键',
+    id bigint unsigned auto_increment comment '主键',
     username varchar(50) default null comment '用户名',
     password varchar(256) default null comment '密码',
     secret varchar(60) default null comment '加密',
@@ -67,3 +67,17 @@ create table if not exists t_blog (
     update_time timestamp default current_timestamp on update current_timestamp comment '修改时间',
     primary key (id)
 ) comment '博客表';
+
+/**
+  博客标签表
+ */
+drop table if exists t_blog_tag;
+
+create table if not exists t_blog_tag (
+    id bigint unsigned auto_increment comment '主键',
+    blog_id bigint comment '博客id',
+    tag_id bigint comment '标签id',
+    create_time timestamp default current_timestamp comment '创建时间',
+    update_time timestamp default current_timestamp on update current_timestamp comment '修改时间',
+    primary key (id)
+) comment '博客标签表';

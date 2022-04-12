@@ -53,4 +53,7 @@ public class BlogDTO {
 
     @ApiModelProperty("是否开启赞赏功能")
     private Boolean canLiked;
+
+    @ApiModelProperty("博客状态，1-保存，2-发布")
+    private Integer state;
 }

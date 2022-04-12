@@ -2,6 +2,7 @@ package com.ballcat.blog.service;
 
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
+import com.ballcat.blog.dto.BlogDTO;
 import com.ballcat.blog.entity.Blog;
 import com.ballcat.blog.param.BlogParam;
 import com.ballcat.blog.vo.BlogVO;
@@ -30,4 +31,18 @@ public interface BlogService extends IService<Blog> {
      * @return
      */
     BlogDetailVO getBlogById(Long id) throws BizException;
+
+    /**
+     * 新增博客
+     * @param blogDTO
+     * @throws Exception
+     */
+    void saveBlog(BlogDTO blogDTO) throws Exception;
+
+    /**
+     * 修改博客
+     * @param blogDTO
+     * @throws Exception
+     */
+    void updateBlog(BlogDTO blogDTO) throws Exception;
 }

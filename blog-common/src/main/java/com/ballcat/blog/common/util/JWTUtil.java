@@ -3,6 +3,7 @@ package com.ballcat.blog.common.util;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import com.ballcat.blog.common.constant.AppConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
@@ -27,11 +28,6 @@ public class JWTUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JWTUtil.class);
 
-    private static final String secret = "ball-cat";
-
-    private static final long expiration = 1800L;
-//    private static final long expiration = 64L;
-
     private static final Clock clock = DefaultClock.INSTANCE;
 
     public static String getUsernameFromToken(String token) {
@@ -53,7 +49,7 @@ public class JWTUtil {
 
     private static Claims getAllClaimsFromToken(String token) {
         return Jwts.parser()
-                .setSigningKey(secret)
+                .setSigningKey(AppConstant.JWT_SECRET)
                 .parseClaimsJws(token)
                 .getBody();
     }
@@ -73,7 +69,7 @@ public class JWTUtil {
 
     public static String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, username, secret);
+        return doGenerateToken(claims, username, AppConstant.JWT_SECRET);
     }
 
     private static String doGenerateToken(Map<String, Object> claims, String subject, String secret) {
@@ -92,7 +88,7 @@ public class JWTUtil {
     public static Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = getIssueAtDateFromToken(token);
         // token过期时间为30分钟，在token失效前450s内有操作即可刷新token
-        return !isCreatedBeforeLastPasswordReset(DateUtil.offsetSecond(created, (int) (expiration >> 2)), lastPasswordReset)
+        return !isCreatedBeforeLastPasswordReset(DateUtil.offsetSecond(created, (int) (AppConstant.JWT_EXPIRATION >> 2)), lastPasswordReset)
                 && (!isTokenExpired(token) || ignoreTokenExpiration(token));
     }
 
@@ -106,7 +102,7 @@ public class JWTUtil {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, secret)
+                .signWith(SignatureAlgorithm.HS512, AppConstant.JWT_SECRET)
                 .compact();
     }
 
@@ -115,7 +111,7 @@ public class JWTUtil {
     }
 
     private static Date calculateExpirationDate(Date createDate) {
-        return new Date(createDate.getTime() + expiration * 1000);
+        return new Date(createDate.getTime() + AppConstant.JWT_EXPIRATION * 1000);
     }
 
     public static void main(String[] args) {
