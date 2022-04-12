@@ -8,11 +8,14 @@
         <result column="main_pic" property="mainPic"/>
         <result column="category_id" property="categoryId"/>
         <result column="content" property="content"/>
+        <result column="is_top" property="top"/>
         <result column="is_recommended" property="recommended"/>
         <result column="is_original" property="original"/>
-        <result column="is_can_liked" property="canLiked"/>
         <result column="is_can_commented" property="canCommented"/>
         <result column="state" property="state"/>
+        <result column="liked_num" property="likedNum"/>
+        <result column="comment_num" property="commentNum"/>
+        <result column="views" property="views"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
@@ -23,8 +26,8 @@
                category_id,
                is_original,
                is_recommended,
-               is_can_liked,
                is_can_commented,
+               is_top,
                state
         from t_blog
         <where>

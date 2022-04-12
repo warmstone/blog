@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ballcat.blog.mapper.ViewRecordMapper">
+
+    <resultMap id="baseResultMap" type="com.ballcat.blog.entity.ViewRecord">
+        <id column="id" property="id"/>
+        <result column="title" property="blogTitle"/>
+        <result column="view_ip" property="viewIp"/>
+        <result column="view_duration" property="viewDuration"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="listViewRecord" resultMap="baseResultMap">
+        select r.id,
+               b.title,
+               r.view_ip,
+               r.view_duration,
+               r.create_time
+        from t_view_record r
+        left join t_blog b
+        on r.blog_id = b.id
+        <where>
+            <if test="blogTitle != null">
+                b.title like concat('%', #{blogTitle}, '%')
+            </if>
+        </where>
+        order by r.create_time desc
+    </select>
+
+
+</mapper>

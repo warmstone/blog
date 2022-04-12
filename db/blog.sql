@@ -58,11 +58,14 @@ create table if not exists t_blog (
     main_pic varchar(128) default null comment '主图',
     category_id bigint unsigned default null comment '分类ID',
     content text default null comment '内容',
+    is_top tinyint(1) default 0 comment '是否置顶,0-否,1-是',
     is_recommended tinyint(1) default 0 comment '是否推荐,0-否,1-是',
     is_original tinyint(1) default 1 comment '是否原创,0-否,1-是',
-    is_can_liked tinyint(1) default 1 comment '是否开启赞赏功能,0-否,1-是',
     is_can_commented tinyint(1) default 0 comment '是否开启评论功能,0-否,1-是',
     state tinyint(4) default 1 comment '博客状态，1-保存，2-发布，3-撤回',
+    liked_num int unsigned default 0 comment '点赞数',
+    views int unsigned default 0 comment '浏览量',
+    comment_num int unsigned default 0 comment '评论数',
     create_time timestamp default current_timestamp comment '创建时间',
     update_time timestamp default current_timestamp on update current_timestamp comment '修改时间',
     primary key (id)
@@ -81,3 +84,30 @@ create table if not exists t_blog_tag (
     update_time timestamp default current_timestamp on update current_timestamp comment '修改时间',
     primary key (id)
 ) comment '博客标签表';
+
+/**
+  浏览记录表
+ */
+drop table if exists t_view_record;
+
+create table if not exists t_view_record (
+    id bigint unsigned auto_increment comment '主键',
+    blog_id bigint comment '博客id',
+    view_ip varchar(16) default null comment 'ip',
+    view_duration int default null comment '浏览时长',
+    create_time timestamp default current_timestamp comment '创建时间',
+    primary key (id)
+) comment '浏览记录表';
+
+/**
+  点赞记录点赞
+ */
+drop table if exists t_like_record;
+
+create table if not exists t_like_record (
+    id bigint unsigned auto_increment comment '主键',
+    blog_id bigint comment '博客id',
+    like_ip varchar(16) default null comment 'ip',
+    create_time timestamp default current_timestamp comment '创建时间',
+    primary key (id)
+) comment '点赞记录表';

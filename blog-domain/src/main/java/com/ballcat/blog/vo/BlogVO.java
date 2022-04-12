@@ -35,8 +35,8 @@ public class BlogVO {
     @ApiModelProperty("是否原创")
     private Boolean original;
 
-    @ApiModelProperty("是否开启赞赏功能")
-    private Boolean canLiked;
+    @ApiModelProperty("是否置顶")
+    private Boolean top;
 
     @ApiModelProperty("状态,1-保存,2-发布,3-撤回")
     private Integer state;

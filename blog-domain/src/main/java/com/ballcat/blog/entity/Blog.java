@@ -36,6 +36,11 @@ public class Blog {
      */
     private String content;
     /**
+     * 是否置顶
+     */
+    @TableField("is_top")
+    private Boolean top;
+    /**
      * 是否推荐
      */
     @TableField("is_recommended")
@@ -46,11 +51,6 @@ public class Blog {
     @TableField("is_original")
     private Boolean original;
     /**
-     * 是否开启赞赏功能
-     */
-    @TableField("is_can_liked")
-    private Boolean canLiked;
-    /**
      * 是否开启评论功能
      */
     @TableField("is_can_commented")
@@ -59,6 +59,18 @@ public class Blog {
      * 博客状态，1-保存，2-发布，3-撤回
      */
     private Integer state;
+    /**
+     * 点赞数
+     */
+    private Integer likedNum;
+    /**
+     * 浏览量
+     */
+    private Integer views;
+    /**
+     * 评论数
+     */
+    private Integer commentNum;
     /**
      * 创建时间
      */
