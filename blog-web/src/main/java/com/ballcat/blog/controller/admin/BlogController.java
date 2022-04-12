@@ -51,7 +51,7 @@ public class BlogController {
     @PutMapping()
     @ApiOperation(value = "修改博客", httpMethod = "PUT")
     public CommonResult<Integer> updateBlog(@Validated(Update.class) @RequestBody BlogDTO blogDTO) throws Exception {
-
+        blogService.updateBlog(blogDTO);
         return CommonResult.ok();
     }
 }
