@@ -17,4 +17,11 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class BlogTagServiceImpl extends ServiceImpl<BlogTagMapper, BlogTag> implements BlogTagService {
+
+    private final BlogTagMapper blogTagMapper;
+
+    @Override
+    public void removeByBlogId(Long blogId) {
+        blogTagMapper.removeByBlogId(blogId);
+    }
 }

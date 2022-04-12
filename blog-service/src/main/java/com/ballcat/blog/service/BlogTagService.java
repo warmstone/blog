@@ -9,4 +9,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @description
  */
 public interface BlogTagService extends IService<BlogTag> {
+    /**
+     * 删除博客的标签
+     * @param id
+     */
+    void removeByBlogId(Long id);
 }

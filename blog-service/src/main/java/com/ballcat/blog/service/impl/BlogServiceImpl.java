@@ -121,6 +121,22 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
             // 已发布，无法编辑
             throw new BizException("博客已发布，无法编辑");
         }
-
+        Blog updateEntity = new Blog();
+        BeanUtil.copyProperties(blogDTO, updateEntity);
+        // 更新博客
+        updateById(updateEntity);
+        // 更新博客标签
+        List<Long> tagIds = blogDTO.getTagIds();
+        if (ObjectUtil.isNotNull(tagIds)) {
+            // 删除旧标签
+            blogTagService.removeByBlogId(blogDTO.getId());
+            // 保存新标签
+            for (Long tagId : tagIds) {
+                BlogTag blogTag = new BlogTag();
+                blogTag.setBlogId(blogDTO.getId());
+                blogTag.setTagId(tagId);
+                blogTagService.save(blogTag);
+            }
+        }
     }
 }
