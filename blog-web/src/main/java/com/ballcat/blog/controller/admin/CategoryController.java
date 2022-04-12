@@ -68,4 +68,9 @@ public class CategoryController {
         return CommonResult.ok();
     }
 
+    @GetMapping(value = "/all")
+    @ApiOperation(value = "全部分类", httpMethod = "GET")
+    public CommonResult<List<CategoryVO>> allCategory() {
+        return CommonResult.ok(categoryService.allCategory());
+    }
 }

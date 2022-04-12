@@ -5,6 +5,7 @@ import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.dto.TagDTO;
 import com.ballcat.blog.entity.Tag;
 import com.ballcat.blog.param.TagParam;
+import com.ballcat.blog.vo.CategoryVO;
 import com.ballcat.blog.vo.TagVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -55,4 +56,10 @@ public interface TagService extends IService<Tag> {
      * @param id
      */
     void removeTagById(Long id) throws BizException;
+
+    /**
+     * 所有标签
+     * @return
+     */
+    List<TagVO> allTag();
 }

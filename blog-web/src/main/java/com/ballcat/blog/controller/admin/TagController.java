@@ -6,6 +6,7 @@ import com.ballcat.blog.common.validate.Update;
 import com.ballcat.blog.dto.TagDTO;
 import com.ballcat.blog.param.TagParam;
 import com.ballcat.blog.service.TagService;
+import com.ballcat.blog.vo.CategoryVO;
 import com.ballcat.blog.vo.TagVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,4 +69,9 @@ public class TagController {
         return CommonResult.ok();
     }
 
+    @GetMapping(value = "/all")
+    @ApiOperation(value = "全部标签", httpMethod = "GET")
+    public CommonResult<List<TagVO>> allTag() {
+        return CommonResult.ok(tagService.allTag());
+    }
 }

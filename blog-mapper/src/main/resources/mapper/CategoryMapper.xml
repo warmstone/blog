@@ -36,5 +36,10 @@
         </where>
         order by create_time desc
     </select>
+    <select id="allCategory" resultMap="baseResultMap">
+        select id, category_name
+        from t_category
+        where is_deleted = 0
+    </select>
 
 </mapper>

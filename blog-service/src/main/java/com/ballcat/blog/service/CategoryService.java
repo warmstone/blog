@@ -55,4 +55,11 @@ public interface CategoryService extends IService<Category> {
      * @param id
      */
     void removeCategoryById(Long id) throws BizException;
+
+    /**
+     * 所有分类
+     * @return
+     */
+    List<CategoryVO> allCategory();
+
 }

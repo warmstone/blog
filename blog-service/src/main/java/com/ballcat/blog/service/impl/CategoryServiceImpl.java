@@ -136,4 +136,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         checkCategoryExists(id);
         categoryMapper.deleteById(id);
     }
+
+    /**
+     * 所有分类
+     * @return
+     */
+    @Override
+    public List<CategoryVO> allCategory() {
+        List<Category> allCategory = categoryMapper.allCategory();
+        List<CategoryVO> categoryVOList = allCategory.stream().map(category -> {
+            CategoryVO categoryVO = new CategoryVO();
+            BeanUtil.copyProperties(category, categoryVO);
+            return categoryVO;
+        }).collect(Collectors.toList());
+        return categoryVOList;
+    }
 }

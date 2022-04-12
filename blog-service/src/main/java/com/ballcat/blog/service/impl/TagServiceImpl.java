@@ -6,10 +6,12 @@ import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.common.response.RetCode;
 import com.ballcat.blog.dto.TagDTO;
+import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.entity.Tag;
 import com.ballcat.blog.mapper.TagMapper;
 import com.ballcat.blog.param.TagParam;
 import com.ballcat.blog.service.TagService;
+import com.ballcat.blog.vo.TagVO;
 import com.ballcat.blog.vo.TagVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
@@ -135,5 +137,20 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     public void removeTagById(Long id) throws BizException {
         checkTagExists(id);
         tagMapper.deleteById(id);
+    }
+
+    /**
+     * 所有分类
+     * @return
+     */
+    @Override
+    public List<TagVO> allTag() {
+        List<Tag> allTag = tagMapper.allTag();
+        List<TagVO> tagVOList = allTag.stream().map(tag -> {
+            TagVO tagVO = new TagVO();
+            BeanUtil.copyProperties(tag, tagVO);
+            return tagVO;
+        }).collect(Collectors.toList());
+        return tagVOList;
     }
 }

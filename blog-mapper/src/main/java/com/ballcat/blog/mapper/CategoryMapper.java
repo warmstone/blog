@@ -21,4 +21,7 @@ public interface CategoryMapper extends BaseMapper<Category> {
     List<Category> listBlogCategory(CategoryParam param);
 
     void enabledBlogCategory(@Param("id") Long id, @Param("enabled") Boolean enabled);
+
+    List<Category> allCategory();
+
 }

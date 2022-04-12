@@ -1,5 +1,6 @@
 package com.ballcat.blog.mapper;
 
+import com.ballcat.blog.entity.Category;
 import com.ballcat.blog.entity.Tag;
 import com.ballcat.blog.param.TagParam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -21,4 +22,6 @@ public interface TagMapper extends BaseMapper<Tag> {
     List<Tag> listBlogTag(TagParam param);
 
     void enabledBlogTag(@Param("id") Long id, @Param("enabled") Boolean enabled);
+
+    List<Tag> allTag();
 }

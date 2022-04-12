@@ -37,4 +37,10 @@
         order by create_time desc
     </select>
 
+    <select id="allTag" resultMap="baseResultMap">
+        select id, tag_name
+        from t_tag
+        where is_deleted = 0
+    </select>
+
 </mapper>

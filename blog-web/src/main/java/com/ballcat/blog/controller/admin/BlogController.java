@@ -27,7 +27,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BlogController {
 
-    private BlogService blogService;
+    private final BlogService blogService;
 
     @GetMapping()
     @ApiOperation(value = "博客列表", httpMethod = "GET")
