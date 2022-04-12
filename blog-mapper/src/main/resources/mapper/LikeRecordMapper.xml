@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ballcat.blog.mapper.LikeRecordMapper">
+
+    <resultMap id="baseResultMap" type="com.ballcat.blog.entity.LikeRecord">
+        <id column="id" property="id"/>
+        <result column="title" property="blogTitle"/>
+        <result column="like_ip" property="likeIp"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="listLikeRecord" resultMap="baseResultMap">
+        select r.id,
+               b.title,
+               r.like_ip,
+               r.create_time
+        from t_like_record r
+        left join t_blog b
+        on r.blog_id = b.id
+        <where>
+            <if test="blogTitle != null">
+                b.title like concat('%', #{blogTitle}, '%')
+            </if>
+        </where>
+        order by r.create_time desc
+    </select>
+
+
+</mapper>
