@@ -15,5 +15,21 @@ import java.util.List;
 @Mapper
 public interface BlogMapper extends BaseMapper<Blog> {
 
+    /**
+     * 博客列表
+     * @param param
+     * @return
+     */
     List<Blog> listBlog(BlogParam param);
+
+    /**
+     * 阅读排行
+     */
+    List<Blog> rankList();
+
+    /**
+     * 查询博客总数
+     * @return
+     */
+    int countBlog();
 }

@@ -54,4 +54,10 @@ public class BlogController {
         blogService.updateBlog(blogDTO);
         return CommonResult.ok();
     }
+
+    @GetMapping("/rankList")
+    @ApiOperation(value = "阅读排行榜", httpMethod = "GET")
+    public CommonResult<List<BlogVO>> rankList() {
+        return CommonResult.ok(blogService.rankList());
+    }
 }

@@ -38,6 +38,9 @@ public class BlogVO {
     @ApiModelProperty("是否置顶")
     private Boolean top;
 
+    @ApiModelProperty("阅读量")
+    private Integer viewNum;
+
     @ApiModelProperty("状态,1-保存,2-发布,3-撤回")
     private Integer state;
 

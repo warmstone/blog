@@ -54,4 +54,15 @@
         order by create_time desc
     </select>
 
+    <select id="rankList" resultMap="baseResultMap">
+        select title, views
+        from t_blog
+        order by views
+        limit 10
+    </select>
+
+    <select id="countBlog" resultType="java.lang.Integer">
+        select count(*) from t_blog where state = 2
+    </select>
+
 </mapper>

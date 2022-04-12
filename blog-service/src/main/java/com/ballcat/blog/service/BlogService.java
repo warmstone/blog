@@ -45,4 +45,16 @@ public interface BlogService extends IService<Blog> {
      * @throws Exception
      */
     void updateBlog(BlogDTO blogDTO) throws Exception;
+
+    /**
+     * 阅读排行
+     * @return
+     */
+    List<BlogVO> rankList();
+
+    /**
+     * 查询博客总数
+     * @return
+     */
+    int countBlog();
 }

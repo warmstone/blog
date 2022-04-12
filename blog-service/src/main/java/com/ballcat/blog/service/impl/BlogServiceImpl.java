@@ -139,4 +139,24 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
             }
         }
     }
+
+    /**
+     * 阅读排行
+     * @return
+     */
+    @Override
+    public List<BlogVO> rankList() {
+        List<Blog> rankList = blogMapper.rankList();
+        List<BlogVO> blogVOList = rankList.stream().map(blog -> {
+            BlogVO blogVO = new BlogVO();
+            BeanUtil.copyProperties(blog, blogVO);
+            return blogVO;
+        }).collect(Collectors.toList());
+        return blogVOList;
+    }
+
+    @Override
+    public int countBlog() {
+        return blogMapper.countBlog();
+    }
 }

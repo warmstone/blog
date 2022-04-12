@@ -30,4 +30,5 @@ public class ViewRecordController {
     public CommonResult<List<ViewRecord>> listViewRecord(@RequestParam(required = false) ViewRecordParam param) {
         return viewRecordService.listViewRecord(param);
     }
+
 }
