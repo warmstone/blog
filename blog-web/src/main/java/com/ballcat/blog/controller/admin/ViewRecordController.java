@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2022-04-12 15:28
  * @description
  */
-@Api(tags = "后台管理>>浏览记录")
+@Api(tags = "后台管理>>内容管理>>浏览记录")
 @RequestMapping(value = "/admin/viewRecord")
 @AllArgsConstructor
 public class ViewRecordController {

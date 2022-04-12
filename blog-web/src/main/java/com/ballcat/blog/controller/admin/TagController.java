@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/admin/tag")
 @AllArgsConstructor
-@Api(tags = "后台管理>>博客标签管理")
+@Api(tags = "后台管理>>内容管理>>博客标签管理")
 public class TagController {
 
     private final TagService tagService;

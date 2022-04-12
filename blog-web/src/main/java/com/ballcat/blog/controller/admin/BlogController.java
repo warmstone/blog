@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/admin/blog")
-@Api(tags = "后台管理>>博客管理")
+@Api(tags = "后台管理>>内容管理>>博客管理")
 @AllArgsConstructor
 public class BlogController {
 

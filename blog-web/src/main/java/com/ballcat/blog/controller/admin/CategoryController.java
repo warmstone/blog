@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/admin/category")
 @AllArgsConstructor
-@Api(tags = "后台管理>>博客分类管理")
+@Api(tags = "后台管理>>内容管理>>博客分类管理")
 public class CategoryController {
 
     private final CategoryService categoryService;
