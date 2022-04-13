@@ -63,6 +63,7 @@ create table if not exists t_blog (
     is_original tinyint(1) default 1 comment '是否原创,0-否,1-是',
     is_can_commented tinyint(1) default 0 comment '是否开启评论功能,0-否,1-是',
     state tinyint(4) default 1 comment '博客状态，1-保存，2-发布，3-撤回',
+    publish_time timestamp default null comment '发布时间',
     liked_num int unsigned default 0 comment '点赞数',
     views int unsigned default 0 comment '浏览量',
     comment_num int unsigned default 0 comment '评论数',

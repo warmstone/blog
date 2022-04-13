@@ -13,6 +13,7 @@
         <result column="is_original" property="original"/>
         <result column="is_can_commented" property="canCommented"/>
         <result column="state" property="state"/>
+        <result column="publish_time" property="publishTime"/>
         <result column="liked_num" property="likedNum"/>
         <result column="comment_num" property="commentNum"/>
         <result column="views" property="views"/>

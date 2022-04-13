@@ -2,6 +2,7 @@ package com.ballcat.blog.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.ballcat.blog.common.constant.BlogStateEnum;
@@ -97,6 +98,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
         Blog blog = new Blog();
         BeanUtil.copyProperties(blogDTO, blog);
         // 保存博客
+        if (ObjectUtil.equals(blogDTO.getState(), BlogStateEnum.PUBLISHED.getCode())) {
+            // 记录发布时间
+            blog.setPublishTime(DateUtil.date());
+        }
         save(blog);
         Long blogId = blog.getId();
         // 保存博客标签

@@ -23,7 +23,8 @@ public class StatisticalDataServiceImpl implements StatisticalDataService {
     public StatisticalDataVO getStatisticData() {
         // 查询博客总数
         int totalBlogNum = blogService.countBlog();
-        // 查询
+        // 查询上周发布博客数
+        
         return null;
     }
 }

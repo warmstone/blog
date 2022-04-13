@@ -60,6 +60,11 @@ public class Blog {
      */
     private Integer state;
     /**
+     * 发布时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date publishTime;
+    /**
      * 点赞数
      */
     private Integer likedNum;
