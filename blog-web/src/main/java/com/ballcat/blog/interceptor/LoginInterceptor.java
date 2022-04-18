@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             logger.info("canTokenBeRefreshed: {}", canTokenBeRefreshed);
             if (canTokenBeRefreshed) {
                 String refreshToken = JWTUtil.refreshToken(token);
-                response.setHeader("x-auth-token", refreshToken);
+                response.setHeader("token", refreshToken);
             }
         } catch (Exception e) {
             logger.info("==================token解析异常==================");

@@ -39,7 +39,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * @return
      */
     @Override
-    public void saveBlogCategory(CategoryDTO categoryDTO) throws BizException {
+    public void saveBlogCategory(CategoryDTO categoryDTO) throws Exception {
         checkCategoryNameExists(categoryDTO.getCategoryName());
         Category category = new Category();
         BeanUtil.copyProperties(categoryDTO, category);
@@ -51,7 +51,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
      * @param categoryDTO 要修改的分类信息
      */
     @Override
-    public void updateBlogCategory(CategoryDTO categoryDTO) throws BizException {
+    public void updateBlogCategory(CategoryDTO categoryDTO) throws Exception {
         // 查询分类是否存在
         checkCategoryExists(categoryDTO.getId());
         // 查询分类名称是否存在

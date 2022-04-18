@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author pengshun
  * @date 2022-04-11 15:54
@@ -11,7 +13,9 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "博客标签显示vo")
-public class TagVO {
+public class TagVO implements Serializable {
+
+    private static final long serialVersionUID = -5650039102856484278L;
 
     @ApiModelProperty("id")
     private Long id;
@@ -19,6 +23,6 @@ public class TagVO {
     @ApiModelProperty("标签名称")
     private String tagName;
 
-    @ApiModelProperty("是否删除")
-    private Boolean deleted;
+    @ApiModelProperty("是否有效")
+    private Boolean enabled;
 }

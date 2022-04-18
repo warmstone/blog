@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author pengshun
  * @date 2022-04-12 18:17
@@ -11,7 +13,9 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "统计数据")
-public class StatisticalDataVO {
+public class StatisticalDataVO implements Serializable {
+
+    private static final long serialVersionUID = -6209886651603623635L;
 
     @ApiModelProperty("总阅读量")
     private Integer totalViewNum;

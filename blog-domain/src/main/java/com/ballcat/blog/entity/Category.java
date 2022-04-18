@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.JDBCType;
 import java.util.Date;
@@ -33,18 +34,18 @@ public class Category {
     /**
      * 逻辑删除标志
      */
-    @TableField(value = "is_deleted")
-    private Boolean deleted;
+    @TableField(value = "is_enabled")
+    private Boolean enabled;
 
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 修改时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
 }

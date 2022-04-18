@@ -1,13 +1,16 @@
-package com.ballcat.blog.controller.admin;
+package com.ballcat.blog.controller;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.ballcat.blog.common.response.CommonResult;
+import com.ballcat.blog.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -32,5 +35,13 @@ public class HealthCheckController {
     public String testLogAspect(@RequestBody Map<String, Object> params) {
         JSONObject jsonObject = JSONUtil.parseObj(params);
         return jsonObject.toString();
+    }
+
+    @GetMapping(value = "/user")
+    public CommonResult<User> getUser() {
+        User user = new User();
+        user.setId(1L);
+        user.setCreateTime(new Date());
+        return CommonResult.ok(user);
     }
 }

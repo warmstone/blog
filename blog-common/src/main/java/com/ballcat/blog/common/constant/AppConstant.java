@@ -15,7 +15,7 @@ public class AppConstant {
     /**
      * JWT token过期时间
      */
-    public static final Long JWT_EXPIRATION = 1800L;
+    public static final Long JWT_EXPIRATION = 3600L * 24;
 
 
 

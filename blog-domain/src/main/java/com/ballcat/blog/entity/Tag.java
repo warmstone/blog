@@ -29,8 +29,8 @@ public class Tag {
     /**
      * 逻辑删除标志
      */
-    @TableField(value = "is_deleted")
-    private Boolean deleted;
+    @TableField(value = "is_enabled")
+    private Boolean enabled;
 
     /**
      * 创建时间

@@ -94,6 +94,7 @@ public class CommonResult <T>{
      * @return 失败提示
      */
     public static <T> CommonResult<T> fail(String message) {
+        System.out.println(RetCode.FAIL.getCode());
         return fail(RetCode.FAIL.getCode(), message, null, 0L);
     }
 

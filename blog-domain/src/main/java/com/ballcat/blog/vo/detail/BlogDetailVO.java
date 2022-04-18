@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,7 +18,9 @@ import java.util.List;
  */
 @Data
 @ApiModel(description = "博客详情VO")
-public class BlogDetailVO {
+public class BlogDetailVO implements Serializable {
+
+    private static final long serialVersionUID = -5956009775515327103L;
 
     @ApiModelProperty("id")
     private Long id;

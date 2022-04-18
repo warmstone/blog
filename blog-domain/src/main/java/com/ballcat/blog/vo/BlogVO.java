@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,9 @@ import java.util.Date;
  */
 @Data
 @ApiModel(description = "博客列表VO")
-public class BlogVO {
+public class BlogVO implements Serializable {
+
+    private static final long serialVersionUID = -3273137380669820390L;
 
     @ApiModelProperty("id")
     private Long id;

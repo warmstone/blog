@@ -17,6 +17,4 @@ public class CategoryParam extends PageQuery {
     @ApiModelProperty(value = "分类名称", required = false)
     private String categoryName;
 
-    @ApiModelProperty(value = "状态是否有效", required = false)
-    private Boolean deleted;
 }

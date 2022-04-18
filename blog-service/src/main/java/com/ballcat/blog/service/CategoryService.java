@@ -21,13 +21,13 @@ public interface CategoryService extends IService<Category> {
      * 保存分类
      * @param categoryDTO 要保存的分类
      */
-    void saveBlogCategory(CategoryDTO categoryDTO) throws BizException;
+    void saveBlogCategory(CategoryDTO categoryDTO) throws Exception;
 
     /**
      * 修改分类
      * @param categoryDTO 要修改的分类
      */
-    void updateBlogCategory(CategoryDTO categoryDTO) throws BizException;
+    void updateBlogCategory(CategoryDTO categoryDTO) throws Exception;
 
     /**
      * 查看分类列表

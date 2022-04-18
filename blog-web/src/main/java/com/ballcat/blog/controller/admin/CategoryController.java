@@ -1,9 +1,11 @@
 package com.ballcat.blog.controller.admin;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.common.validate.Update;
 import com.ballcat.blog.dto.CategoryDTO;
+import com.ballcat.blog.entity.User;
 import com.ballcat.blog.param.CategoryParam;
 import com.ballcat.blog.service.CategoryService;
 import com.ballcat.blog.vo.CategoryVO;
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +34,11 @@ public class CategoryController {
     @PostMapping()
     @ApiOperation(value = "新增分类", httpMethod = "POST")
     public CommonResult<Integer> save(@RequestBody CategoryDTO categoryDTO) throws Exception {
-        categoryService.saveBlogCategory(categoryDTO);
+        if (ObjectUtil.isNull(categoryDTO.getId())) {
+            categoryService.saveBlogCategory(categoryDTO);
+        } else {
+            categoryService.updateBlogCategory(categoryDTO);
+        }
         return CommonResult.ok();
     }
 
@@ -42,9 +49,9 @@ public class CategoryController {
         return CommonResult.ok();
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}/{enabled}")
     @ApiOperation(value = "启用/禁用分类", httpMethod = "PUT")
-    public CommonResult<Integer> enabled(@PathVariable("id") Long id, @RequestParam Boolean enabled) throws Exception {
+    public CommonResult<Integer> enabled(@PathVariable("id") Long id, @PathVariable("enabled") Boolean enabled) throws Exception {
         categoryService.enabled(id, enabled);
         return CommonResult.ok();
     }

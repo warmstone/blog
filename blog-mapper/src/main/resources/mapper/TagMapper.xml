@@ -5,14 +5,14 @@
     <resultMap id="baseResultMap" type="com.ballcat.blog.entity.Tag">
         <id column="id" property="id"/>
         <result column="tag_name" property="tagName"/>
-        <result column="is_deleted" property="deleted"/>
+        <result column="is_enabled" property="enabled"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
     <update id="enabledBlogTag">
         update t_tag
-        set is_deleted = #{enabled}
+        set is_enabled = #{enabled}
         where id = #{id}
     </update>
 
@@ -24,14 +24,11 @@
     </select>
 
     <select id="listBlogTag" resultMap="baseResultMap">
-        select id, tag_name, is_deleted, create_time, update_time
+        select id, tag_name, is_enabled, create_time, update_time
         from t_tag
         <where>
             <if test="tagName != null">
                 tag_name like concat('%', #{tagName}, '%')
-            </if>
-            <if test="deleted != null">
-                and is_deleted = #{deleted}
             </if>
         </where>
         order by create_time desc
@@ -40,7 +37,7 @@
     <select id="allTag" resultMap="baseResultMap">
         select id, tag_name
         from t_tag
-        where is_deleted = 0
+        where is_enabled = 1
     </select>
 
 </mapper>
