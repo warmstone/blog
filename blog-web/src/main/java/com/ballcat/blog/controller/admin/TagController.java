@@ -1,5 +1,6 @@
 package com.ballcat.blog.controller.admin;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.ballcat.blog.common.exception.BizException;
 import com.ballcat.blog.common.response.CommonResult;
 import com.ballcat.blog.common.validate.Update;
@@ -32,7 +33,11 @@ public class TagController {
     @PostMapping()
     @ApiOperation(value = "新增标签", httpMethod = "POST")
     public CommonResult<Integer> save(@RequestBody TagDTO tagDTO) throws Exception {
-        tagService.saveBlogTag(tagDTO);
+        if (ObjectUtil.isNull(tagDTO.getId())) {
+            tagService.saveBlogTag(tagDTO);
+        } else {
+            tagService.updateBlogTag(tagDTO);
+        }
         return CommonResult.ok();
     }
 
@@ -43,9 +48,9 @@ public class TagController {
         return CommonResult.ok();
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}/{enabled}")
     @ApiOperation(value = "启用/禁用标签", httpMethod = "PUT")
-    public CommonResult<Integer> enabled(@PathVariable("id") Long id, @RequestParam Boolean enabled) throws Exception {
+    public CommonResult<Integer> enabled(@PathVariable("id") Long id, @PathVariable("enabled") Boolean enabled) throws Exception {
         tagService.enabled(id, enabled);
         return CommonResult.ok();
     }

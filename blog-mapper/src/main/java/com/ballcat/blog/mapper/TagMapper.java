@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface TagMapper extends BaseMapper<Tag> {
 
-    Tag getByTagName(@Param("TagName") String tagName);
+    Tag getByTagName(@Param("tagName") String tagName);
 
     List<Tag> listBlogTag(TagParam param);
 

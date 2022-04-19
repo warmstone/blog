@@ -1,10 +1,12 @@
 package com.ballcat.blog.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author pengshun
@@ -22,6 +24,10 @@ public class TagVO implements Serializable {
 
     @ApiModelProperty("标签名称")
     private String tagName;
+
+    @ApiModelProperty("创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
     @ApiModelProperty("是否有效")
     private Boolean enabled;
