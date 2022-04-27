@@ -29,7 +29,9 @@
                is_recommended,
                is_can_commented,
                is_top,
-               state
+               state,
+               create_time,
+               update_time
         from t_blog
         <where>
             <if test="title != null">

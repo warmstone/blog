@@ -121,11 +121,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     public void updateBlog(BlogDTO blogDTO) throws Exception {
         Blog blog = checkBlogExists(blogDTO.getId());
         // 判断博客发布状态
-        Integer state = blog.getState();
-        if (NumberUtil.equals(BlogStateEnum.PUBLISHED.getCode(), state)) {
-            // 已发布，无法编辑
-            throw new BizException("博客已发布，无法编辑");
-        }
+//        Integer state = blog.getState();
+//        if (NumberUtil.equals(BlogStateEnum.PUBLISHED.getCode(), state)) {
+//            // 已发布，无法编辑
+//            throw new BizException("博客已发布，无法编辑");
+//        }
         Blog updateEntity = new Blog();
         BeanUtil.copyProperties(blogDTO, updateEntity);
         // 更新博客
